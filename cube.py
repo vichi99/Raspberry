@@ -1,8 +1,13 @@
-#by Jan Vicha
+##########################
+#This code was created for fun and practice my low skill
+##########################
+import random
 def name():
-    name = input("Hi, whats your name? ")
+    #name = input("Hi, whats your name? ")
+    text = "Hi , whats your name? "
+    name = format_input(text,str)
     length = len(name)
-    print("Hello {0}! Yours name has {1} symbol".format(name,length))
+    print("Hello {0}! Your name have {1} symbol".format(name,length))
 
 def number():
     format_text = "The number {0} is in binary: {0:0>4b} and the last value is {1}"
@@ -20,8 +25,10 @@ def number():
     return
 
 def cube():
-    text = "Enter the number of cube (1-6) you want to see, or  >= 7 to see all: "
+    text = "Enter the number of cube (1-6) you want to see, 7 to random choice or  >= 8 to see all: "
     value = format_input(text, int)
+    if value == 7:
+        value = random.randint(1, 6)
     cube = str("""
     +-------+
     | {}   {} |
@@ -36,24 +43,14 @@ def cube():
     c4 = ("Number 4" + cube.format("o", "o", " ", " ", " ", "o", "o"))
     c5 = ("Number 5" + cube.format("o", "o", " ", "o", " ", "o", "o"))
     c6 = ("Number 6" + cube.format("o", "o", "o", " ", "o", "o", "o"))
+    cube_list = [c1,c2,c3,c4,c5,c6]
     wrong = ("Wrong enter")
     error = ("Error enter")
-
     try:
-        if value == 1:
-            print(c1)
-        elif value == 2:
-            print(c2)
-        elif value == 3:
-            print(c3)
-        elif value == 4:
-            print(c4)
-        elif value == 5:
-            print(c5)
-        elif value == 6:
-            print(c6)
-        elif value >= 7:
-            print(c1 + c2 +c3 + c4 + c5 + c6)
+        if 0 <= value <= 6:
+            print(cube_list[value - 1])
+        elif value >= 8:
+            print(c1 + c2 + c3 + c4 + c5 + c6)
         else:
             print(wrong)
     except:
@@ -65,15 +62,17 @@ def format_input(text,exp_type):
     while cond == True:
         value = input(text)
         try:
-            if exp_type == int:
+            if len(str(value)) == 0:
+                print("The input is empty")
+            elif exp_type == int:
                 value = int(value)
                 cond = False
                 return (value)
-            if exp_type == str:
+            elif exp_type == str:
                 value = str(value)
                 cond = False
                 return (value)
-            if exp_type == float:
+            elif exp_type == float:
                 value = float(value)
                 cond = False
                 return (value)
