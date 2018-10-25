@@ -1,3 +1,4 @@
+#by Jan Vicha
 name = input("Hi, whats your name? ")
 length = len(name)
 print("Hello {0}! Yours name has {1} symbol".format(name,length))
