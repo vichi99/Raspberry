@@ -3,9 +3,14 @@ name = input("Hi, whats your name? ")
 length = len(name)
 print("Hello {0}! Yours name has {1} symbol".format(name,length))
 
-
-number = int(input("Enter the number: "))
-print("In binary: {0:0>4b}, last value at the number is {0}, ".format(int(number/10*10)))
+cond = True
+while cond == True:
+    try:
+        number = int(input("Enter the int number: "))
+        print("The number {0} is in binary: {0:0>4b} and the last value is {1} ".format(number,int(number % 10)))
+        cond = False
+    except:
+        print("The input is wrong. Type number")
 
 def cube(value):
     cube = str("""
