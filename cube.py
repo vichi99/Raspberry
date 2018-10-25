@@ -5,27 +5,23 @@ def name():
     print("Hello {0}! Yours name has {1} symbol".format(name,length))
 
 def number():
-    cond = True
-    while cond == True:
-        try:
-            text = str("The number {0} is in binary: {0:0>4b} and the last value is {1}")
-            number = int(input("Enter the int number: "))
-            length = len(str(number))
-            if length == 1:
-                print(text.format(number,int(number % 10)))
-            if length == 2:
-                print((text + ", {2}").format(number,int(number % 10),int(number % 100 / 10 )))
-            if length >= 3:
-                print((text + ", {2}, {3}").format(number,int(number % 10),int(number % 100 / 10 ),int(number % 1000 / 100)))
-            else:
-                pass
-            cond = False
-        except:
-            print("The input is wrong. Type number")
+    format_text = "The number {0} is in binary: {0:0>4b} and the last value is {1}"
+    text = "Enter the int number: "
+    number = format_input(text,int)
+    length = len(str(number))
+    if length == 1:
+        print(format_text.format(number,int(number % 10)))
+    if length == 2:
+        print((format_text + ", {2}").format(number,int(number % 10),int(number % 100 / 10 )))
+    if length >= 3:
+        print((format_text + ", {2}, {3}").format(number,int(number % 10),int(number % 100 / 10 ),int(number % 1000 / 100)))
+    else:
+        pass
     return
 
 def cube():
-    value = input("Enter the number of cube (1-6) you want to see, or 7 to see all: ")
+    text = "Enter the number of cube (1-6) you want to see, or  >= 7 to see all: "
+    value = format_input(text, int)
     cube = str("""
     +-------+
     | {}   {} |
@@ -43,7 +39,6 @@ def cube():
     wrong = ("Wrong enter")
     error = ("Error enter")
 
-    value = int(value)
     try:
         if value == 1:
             print(c1)
@@ -57,13 +52,36 @@ def cube():
             print(c5)
         elif value == 6:
             print(c6)
-        elif value == 7:
+        elif value >= 7:
             print(c1 + c2 +c3 + c4 + c5 + c6)
         else:
             print(wrong)
     except:
         print(error)
     return
+
+def format_input(text,exp_type):
+    cond = True
+    while cond == True:
+        value = input(text)
+        try:
+            if exp_type == int:
+                value = int(value)
+                cond = False
+                return (value)
+            if exp_type == str
+                value = str(value)
+                cond = False
+                return (value)
+            if exp_type == float:
+                value = float(value)
+                cond = False
+                return (value)
+            else:
+                print("The input type in code is wrong")
+        except:
+                print("The input is wrong. Type {} number".format(str(exp_type)))
+
 
 name()
 number()
