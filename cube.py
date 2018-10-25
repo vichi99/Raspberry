@@ -69,7 +69,7 @@ def format_input(text,exp_type):
                 value = int(value)
                 cond = False
                 return (value)
-            if exp_type == str
+            if exp_type == str:
                 value = str(value)
                 cond = False
                 return (value)
