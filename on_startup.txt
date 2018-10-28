@@ -3,9 +3,9 @@ nastaveni aby prikaz get pri stahovani z netu v cmd sel pres nastavene proxy
 	sudo nano /etc/wgetrc
 	odkomentovat 3 radky s proxy a nastavit proxy serveru
 
-	https_proxy = http://172.16.1.10:3128/
-	http_proxy = http://172.16.1.10:3128/
-	ftp_proxy = http://172.16.1.10:3128/
+	https_proxy = http://171.14.1.10:3127/
+	http_proxy = http://171.14.1.10:3127/
+	ftp_proxy = http://171.14.1.10:3127/
 
 	kontrola:
 	wget fileurl
@@ -21,9 +21,9 @@ nastaveni proxy, update a upragde
 	sudo nano 10proxy
 	
 
-	Acquire::http::Proxy "http://172.16.1.10:3128/";
-	Acquire::ftp::Proxy "http://172.16.1.10:3128/";
-	Acquire::https::Proxy "http://172.16.10:3128/";
+	Acquire::http::Proxy "http://171.14.1.10:3127/";
+	Acquire::ftp::Proxy "http://171.14.1.10:3127/";
+	Acquire::https::Proxy "http://171.14.10:3127/";
 	
 	sudo apt-get update
 	sudo apt-get upgrade
@@ -34,7 +34,7 @@ nastaveni casu ze serveru
 	
 	sudo nano /etc/ntp.conf
 
-	server 172.16.1.2 iburst
+	server 171.14.1.2 iburst
 	
 	kontrola:
 	sudo /etc/init.d/ntp restart
@@ -78,8 +78,8 @@ nastaveni staticke ip eth, wifi
 	sudo nano /etc/dhcpcd.conf
 	
 	interface eth0
-	static ip_address=172.16.4.85
-	static domain_name_servers=172.16.1.10
+	static ip_address=171.14.4.85
+	static domain_name_servers=171.14.1.10
 
 
 
@@ -90,7 +90,7 @@ nastaveni staticke ip eth, wifi
 		iface wlan0 inet static
         	address 10.1.1.1
         	netmask 255.255.0.0
-        	gateway 172.16.1.10
+        	gateway 171.14.1.10
 
 
 	http://raspberrypi.stackexchange.com/questions/37920/how-do-i-set-up-networking-wifi-static-ip-address
