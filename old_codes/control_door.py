@@ -1,4 +1,8 @@
 #!/usr/bin/python3.4
+#####
+# this code has been successfully tested on Raspberry 3b
+#####
+
 import socket
 import RPi.GPIO as GPIO
 import os
