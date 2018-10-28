@@ -21,8 +21,8 @@ odesilatel = 'xxx@xxx.cz'
 prijemce = 'xxx@xxx.cz'
 
 #predmet a text odesilajiciho mailu
-PREDMET = "Otevřené dveře, Hlavní vchod E"
-TEXT = "Prosím zkontrolujte dovření dveří, Hlavní vchod E. Dveře jsou otevřené déle než 2 minuty."
+PREDMET = "Otevřené dveře"
+TEXT = "Prosím zkontrolujte dovření dveří. Dveře jsou otevřené déle než 2 minuty."
 
 header = 'To:' + prijemce + '\n' + 'From: ' + odesilatel + '\n' + 'Subject: {}\n\n{}'.format(PREDMET,TEXT)
 
