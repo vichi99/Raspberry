@@ -1,0 +1,109 @@
+nastaveni aby prikaz get pri stahovani z netu v cmd sel pres nastavene proxy
+
+	sudo nano /etc/wgetrc
+	odkomentovat 3 radky s proxy a nastavit proxy serveru
+
+	https_proxy = http://172.16.1.10:3128/
+	http_proxy = http://172.16.1.10:3128/
+	ftp_proxy = http://172.16.1.10:3128/
+
+	kontrola:
+	wget fileurl
+
+	http://stackoverflow.com/questions/11211705/setting-proxy-in-wget
+
+nastaveni proxy, update a upragde
+	
+	vytvorit soubor 10proxy v adresari /etc/apt/apt.conf.d/
+	a vlozit do nej proxy serveru
+	
+	cd /etc/apt/apt.conf.d
+	sudo nano 10proxy
+	
+
+	Acquire::http::Proxy "http://172.16.1.10:3128/";
+	Acquire::ftp::Proxy "http://172.16.1.10:3128/";
+	Acquire::https::Proxy "http://172.16.10:3128/";
+	
+	sudo apt-get update
+	sudo apt-get upgrade
+
+
+nastaveni casu ze serveru
+	najit soubor /etc/ntp.conf zakomentovat servery a napsat vlastni
+	
+	sudo nano /etc/ntp.conf
+
+	server 172.16.1.2 iburst
+	
+	kontrola:
+	sudo /etc/init.d/ntp restart
+
+	http://raspberrypi.stackexchange.com/questions/4370/where-does-the-raspberry-pi-get-the-time-from
+
+
+zmena python verze v cmd pri spusteni 
+
+	# update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
+	update-alternatives: using /usr/bin/python2.7 to provide /usr/bin/python (python) in auto mode
+	# update-alternatives --install /usr/bin/python python /usr/bin/python3.4 2
+	update-alternatives: using /usr/bin/python3.4 to provide /usr/bin/python (python) in auto mode
+	
+	kontrola:
+	python --version
+
+	https://linuxconfig.org/how-to-change-from-default-to-alternative-python-version-on-debian-linux
+
+nastaveni spusteni scriptu pri startu raspberry
+	
+	sudo nano /etc/rc.local
+
+	vepsat tenhle radek s adresou scriptu pred exit
+
+	python home/pi/Desktop/Dvere2.py &
+
+jak spustit script na pozadi v cmd i pri zavreni cmd 
+
+	nohup /path/to/test.py &
+
+	kontrola:
+	ps aux | grep test.py
+
+	http://askubuntu.com/questions/396654/how-to-run-the-python-program-in-the-background-in-ubuntu-machine
+
+nastaveni staticke ip eth, wifi
+		
+	dhcp napsat nakonec tohle do
+	
+	sudo nano /etc/dhcpcd.conf
+	
+	interface eth0
+	static ip_address=172.16.4.85
+	static domain_name_servers=172.16.1.10
+
+
+
+		naposledy nejak neslo:	 
+		sudo nano /etc/network/interfaces
+	
+		pridam, zamenim manual za static
+		iface wlan0 inet static
+        	address 10.1.1.1
+        	netmask 255.255.0.0
+        	gateway 172.16.1.10
+
+
+	http://raspberrypi.stackexchange.com/questions/37920/how-do-i-set-up-networking-wifi-static-ip-address
+
+nastaveni power managment off pri spusteni, pro zlepseni signalu wifi
+
+	do souboru
+	
+	sudo nano /etc/rc.local
+
+	napsat toto, pred exit
+
+	sleep 10
+	iwconfig wlan0 power off
+
+	https://www.raspberrypi.org/forums/viewtopic.php?f=28&t=44044&start=455
